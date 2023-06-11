@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&family=Raleway:wght@200;300&family=Red+Hat+Mono&family=Space+Grotesk:wght@300&display=swap');
+:root {
+  --Raleway: 'Raleway', sans-serif;
+  --Space-Grotesk: 'Space Grotesk', sans-serif;
+  --RedHat-Mono: 'Red Hat Mono', monospace;
+  --Jetbrains-Mono: 'JetBrains Mono', monospace;
+}
+
+*{
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
