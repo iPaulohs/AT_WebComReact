@@ -25,7 +25,7 @@ export default function Home() {
           </Subtitulo>
           <MainDiv>
             <OptionDiv>
-              <ButtonLink width={180} height={40}>
+              <ButtonLink width={180} height={40} to="/fornecedores">
                 Fornecedores
               </ButtonLink>
               <InternalDiv
@@ -52,7 +52,7 @@ export default function Home() {
               </InternalDiv>
             </OptionDiv>
             <OptionDiv>
-              <ButtonLink width={180} height={40}>
+              <ButtonLink width={180} height={40} to="/contatos">
                 Contatos
               </ButtonLink>
               <InternalDiv width={100} height={65} border={"1px solid #000"}>

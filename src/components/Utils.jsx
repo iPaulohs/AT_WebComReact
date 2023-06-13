@@ -120,3 +120,70 @@ margin: 20px 0;
 width: 50%;
 text-align: center;
 `
+export const InputPadrao = styled.input`
+  border: 1px solid #000;
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  font-size: 1.2rem;
+  padding: 3px 0 3px 10px;
+  box-shadow: 0px 8px 5px -3px rgba(0, 0, 0, 0.1);
+  font-size: 90%;
+  text-align: center;
+  &:focus {
+    outline: none;
+  }
+  &::placeholder {
+    color: #555;
+  }
+`;
+
+import { useState } from "react";
+
+export const SwitchButtons = () => {
+  const [selectedButton, setSelectedButton] = useState(1);
+
+  const handleButtonClick = (buttonId) => {
+    setSelectedButton(buttonId);
+  };
+
+  return (
+    <ContainerButtons>
+      <Button
+        isSelected={selectedButton === 1}
+        onClick={() => handleButtonClick(1)}
+        color="green"
+      >
+        Ativo
+      </Button>
+      <Button
+        isSelected={selectedButton === 2}
+        onClick={() => handleButtonClick(2)}
+        color="red"
+      >
+        Inativo
+      </Button>
+    </ContainerButtons>
+  );
+}
+
+const ContainerButtons = styled.div`
+  border: 1px solid #000;
+  width: 100px;
+  height: 25px;
+  margin: 0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 3px;
+`;
+
+const Button = styled.button`
+  width: 50%;
+  height: 90%;
+  background-color: ${(props) => (props.isSelected ? props.color : "#fff")};
+  border: none;
+  cursor: pointer;
+  color: ${(props) => (props.isSelected ? "white" : "black")};
+  font-size: 10px;
+`;
+
