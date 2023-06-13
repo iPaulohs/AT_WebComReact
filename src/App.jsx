@@ -5,6 +5,7 @@ import Fornecedores from './pages/Fornecedores.jsx'
 import Home from './pages/Home.jsx'
 import Contatos from './pages/Contatos.jsx'
 import NotFound from './pages/NotFound.jsx'
+import AuthProvider from './contexts/AuthContext.jsx'
 
 
 export default function App() {
@@ -12,6 +13,7 @@ export default function App() {
 
   return (
     <Router>
+      <AuthProvider>
       <Routes>
         <Route exact path="/" element={<Login />}/>
         <Route path="/home" element={<Home />}/>
@@ -20,6 +22,7 @@ export default function App() {
         <Route path="/cadastro" element={<Cadastro />}/>
         <Route path="*" element={<NotFound />}/>
       </Routes>
+      </AuthProvider>
     </Router>
     
   )
