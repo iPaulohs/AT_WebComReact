@@ -1,8 +1,15 @@
 import styled from "styled-components";
 import { Container } from "../components/Container";
 import { MainH as Main, Titulo, Subtitulo, Paragrafo, ButtonLink } from "../components/Utils";
+import { format } from "date-fns";
+import { pt } from 'date-fns/locale'
+
 
 export default function Home() {
+
+
+  const dataAtual = new Date()
+
   return (
     <>
       <Container>
@@ -15,7 +22,7 @@ export default function Home() {
             topBottom={"15px"}
             leftRight={"25px"}
             fontSize={20}>
-            Hoje é dia 11 de junho de 2023
+            Hoje é dia {format(dataAtual, "dd 'de' MMMM 'de' yyyy", { locale: pt })}
           </Subtitulo>
           <MainDiv>
             <OptionDiv>

@@ -5,16 +5,59 @@ import { Container } from "../components/Container";
 import CardFornecedor from "../components/CardFornecedor";
 import InputFornecedores from '../components/InputFornecedores'
 import { MainH as Main, Titulo, Subtitulo, InputPadrao, ButtonPadrao } from "../components/Utils";
+import { useState } from 'react'
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import db from '../services/fbdb.js'
+
 
 export default function Fornecedores() {
-  return (
+
+
+  const [fornecedor, setFornecedor] = useState({
+    razaoSocial: '',
+    cnpj: '',
+    servico: '',
+    cidade: '',
+    bairro: '',
+    endereco: '',
+    numero: '',
+    telefone: '',
+    email: ''
+  })
+
+
+const handleCadastro = async () => {
+  
+    const fornecedorData = {
+      razaoSocial: fornecedor.razaoSocial,
+      cnpj: fornecedor.cnpj,
+      servico: fornecedor.servico,
+      cidade: fornecedor.cidade,
+      bairro: fornecedor.bairro,
+      endereco: fornecedor.endereco,
+      numero: fornecedor.numero,
+      telefone: fornecedor.telefone,
+      email: fornecedor.email,
+    };
+
+  try {
+    const docRef = await addDoc(collection(db, 'fornecedores'), fornecedorData);
+    console.log('Documento cadastrado com ID:', docRef.id);
+  } catch (error) {
+    console.error('Erro ao cadastrar o fornecedor:', error);
+  }
+}
+
+
+  return 
+  (
     <>
       <Container>
         <Main>
           <Header>
-          <Link to="/home">
-            <Arrow size={25} />
-          </Link>
+            <Link to="/home">
+              <Arrow size={25} />
+            </Link>
             <Titulo>Fornecedores</Titulo>
           </Header>
           <ContainerOptions>
@@ -23,8 +66,11 @@ export default function Fornecedores() {
           </ContainerOptions>
           <ContainerMain>
             <ContainerLR>
-              <InputFornecedores />
-              <ButtonPadrao width={150} height={40}>
+              <InputFornecedores
+                fornecedor={fornecedor}
+                setFornecedor={setFornecedor}
+              />
+              <ButtonPadrao width={150} height={40} onClick={() => console.log(fornecedor)}>
                 Cadastrar
               </ButtonPadrao>
             </ContainerLR>
@@ -44,7 +90,7 @@ export default function Fornecedores() {
         </Main>
       </Container>
     </>
-  );
+  )
 }
 
 const Header = styled.header`

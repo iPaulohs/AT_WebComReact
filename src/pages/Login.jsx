@@ -3,31 +3,30 @@ import { InputContainer, TitleInput, Input, ButtonPadrao, Titulo, Subtitulo, Ind
 import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from 'react-router-dom'
 import ReactLoading from 'react-loading';
+import { useState, useContext } from 'react'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 
 
 export default function Login() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { setCurrentUser, loading } = useContext(AuthContext);
-  const [ load, setLoad ] = useState(null)
+  const { auth, setCurrentUser, currentUser } = useContext(AuthContext);
   const redirectTo = useNavigate()
-  
-    if(loading){
-      setLoad(<ReactLoading type={'balls'} color={'#000'} height={50} width={50} />)
-    }
 
   const handleLogin = () => {
-    const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        setCurrentUser(user);
+        setCurrentUser(user)
+        console.log('ok')
         redirectTo('/home')
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        console.log(`${errorCode} + ${errorMessage}`)
+        console.log('nOk')
       });
   };
 
@@ -50,7 +49,6 @@ export default function Login() {
             <ButtonPadrao width={190} height={35} onClick={handleLogin}>
               Entrar
             </ButtonPadrao>
-            {load}
             <Details>Ou</Details>
             <ButtonLink width={120} height={30} to="/cadastro">
               Cadastro

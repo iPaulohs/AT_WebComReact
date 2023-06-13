@@ -1,17 +1,17 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import  app  from '../services/fb.js'
 
 const AuthContext = createContext();
+const auth = getAuth(app)
 
 export default function AuthProvider({ children }){
   const [currentUser, setCurrentUser] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+
       setCurrentUser(user);
-      setLoading(false);
 
       if (user) {
         localStorage.setItem('authUser', JSON.stringify(user));
@@ -19,12 +19,11 @@ export default function AuthProvider({ children }){
         localStorage.removeItem('authUser');
       }
     });
-
     return () => unsubscribe();
   }, []);
 
   useEffect(() => {
-    const expirationTime =86400 * 1000; 
+    const expirationTime = 86400 * 1000; 
     const authUser = JSON.parse(localStorage.getItem('authUser'));
 
     if (authUser && authUser.stsTokenExpiresAt) {
@@ -39,7 +38,7 @@ export default function AuthProvider({ children }){
   }, []);
 
   return (
-    <AuthContext.Provider value={{ currentUser, loading}}>
+    <AuthContext.Provider value={{setCurrentUser, currentUser, auth}}>
       {children}
     </AuthContext.Provider>
   );
