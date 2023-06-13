@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { SwitchButtons as Button } from './Utils'
+import Button from './Button'
 
 
 export default function CardFornecedor() {

@@ -1,12 +1,6 @@
 import styled from "styled-components";
 import { Container } from "../components/Container";
-import {
-  MainH as Main,
-  Titulo,
-  Subtitulo,
-  Paragrafo,
-  ButtonLink,
-} from "../components/Utils";
+import { MainH as Main, Titulo, Subtitulo, Paragrafo, ButtonLink } from "../components/Utils";
 
 export default function Home() {
   return (

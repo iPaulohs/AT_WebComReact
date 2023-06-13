@@ -1,16 +1,10 @@
-import { Container } from "../components/Container";
-import {
-  MainH as Main,
-  Titulo,
-  Subtitulo,
-  InputPadrao,
-  ButtonPadrao
-} from "../components/Utils";
-import CardFornecedor from "../components/CardFornecedor";
 import styled from "styled-components";
 import { ArrowLeft } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
+import { Container } from "../components/Container";
+import CardFornecedor from "../components/CardFornecedor";
 import InputFornecedores from '../components/InputFornecedores'
+import { MainH as Main, Titulo, Subtitulo, InputPadrao, ButtonPadrao } from "../components/Utils";
 
 export default function Fornecedores() {
   return (
@@ -87,8 +81,6 @@ const ContainerLR = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
-
 
 const DivSearch = styled.div`
   width: 470px;
