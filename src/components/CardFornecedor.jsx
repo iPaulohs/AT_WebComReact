@@ -2,19 +2,19 @@ import styled from "styled-components";
 import Button from './Button'
 
 
-export default function CardFornecedor() {
+export default function CardFornecedor(props) {
   return (
     <ContainerFornecedor>
       <Button />
       <ContainerInfo>
-        <Name>Paulo Henrique Dos Santos - 05.375.394/0001-21</Name>
-        <Endereco>Rua Dona Balá, nº 810, Floresta, Matozinhos</Endereco>
+        <Name>{props.razaoSocial} - {props.cnpj}</Name>
+        <Endereco>{props.endereco}, nº {props.numero}, {props.bairro}, {props.cidade}</Endereco>
         <ContainerContato>
-          <TelefoneEmail>(31) 93618-0068</TelefoneEmail>
+          <TelefoneEmail>{props.telefone}</TelefoneEmail>
           <hr></hr>
-          <TelefoneEmail>paulohsantos114@gmail.com</TelefoneEmail>
+          <TelefoneEmail>{props.email}</TelefoneEmail>
         </ContainerContato>
-        <Serviço>Assessoria Jurídica</Serviço>
+        <Serviço>{props.servico}</Serviço>
       </ContainerInfo>
     </ContainerFornecedor>
   );
